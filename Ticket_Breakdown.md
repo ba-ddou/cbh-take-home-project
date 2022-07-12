@@ -32,7 +32,7 @@ In order to allow each facility to set a custom ID for each of their agents, and
   - Select facility id & agent id from the shifts table and group them by facility id and agent id. This is essentially the content of the new `customAgentIds` association table you just have to add the custom agent id column.
   - the custom agent id value must be set to the agent id by default (internal database id & the agent's primary key).
 
-### **Agents Entity & GET endpoint**
+### **Agents Entity & HTTP endpoints**
 
 **Context**
 
@@ -43,7 +43,9 @@ In order to allow facilities to set a custom Id for each one of the agents they 
 **Requirements**
 
 - A new `customId` property must be added to the Agent entity.
-- Whenever the agents list is requests from a certain facility (a logged in facility admin), the custom agent id corressponding to that facility must be retrieved from the `customAgentIds` association table and appended to agent object.
+- Whenever the agents list (Agent `GET` endpoint) is requests from a certain facility (a logged in facility admin), the custom agent id corressponding to that facility must be retrieved from the `customAgentIds` association table and appended to agent object.
+- Add a new `PUT` endpoint to update custom agent IDs.
+  > The target agent id & new custom id must be provided in the request body, and the facility id must be decoded from the reauest's auth token.
 
 ### **Interface update**
 

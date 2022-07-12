@@ -33,10 +33,22 @@ In order to allow each facility to set a custom ID for each of their agents, and
 
 ### Agents Entity & GET endpoint
 
+**Context**
+In order to allow facilities to set a custom Id for each one of the agents they work with, this new property need to be added to the agents entity and it must be set at request-time depending on the facility that's requesting it.
+
+> This property is optional and only relevant when the agent data is request by a facility.
+
+> **Requirements**
+
 - A new `customId` property must be added to the Agent entity.
 - Whenever the agents list is requests from a certain facility (a logged in facility admin), the custom agent id corressponding to that facility must be retrieved from the `customAgentIds` association table and appended to agent object.
 
 ### Interface update
+
+**Context**
+To support custom agent ids client side, facility admins must be able to view them and modify them from their dashboards.
+
+**Reauirements**
 
 - Display the new agent `customId` property in the agent info component.
 - Allow editing the `customId` property in the agent info update form.

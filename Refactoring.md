@@ -10,7 +10,7 @@ You will be graded on the exhaustiveness and quality of your unit tests, the dep
 
 ## Your Explanation Here
 
-The first in refactoring this code is adding an empty input check at the beggining of the function body, this makes the function's empty/null/no input behavior/output clearer and removes 1 level of conditional statement nesting from the pyramid of doom that existed before. The second step was extracting the hashing logic into a separate `hash` function making it DRY, and making its purpouse easy to understand. I also wrote a `amendPartitionKey` partition key that sanities the input before hashing to accomodate cases where the `partitionKey` is defined in the input.
+The first step in refactoring this code is adding an empty input check at the beggining of the function body, this makes the function's empty/null/no input behavior/output clearer and removes 1 level of conditional statement nesting from the pyramid of doom that existed before. The second step was extracting the hashing logic into a separate `hash` function making it DRY, and making its purpouse easy to understand. I also wrote a `amendPartitionKey` partition key that sanities the input before hashing to accomodate cases where the `partitionKey` is defined in the input.
 
 The TLDR as to why my version of this code is more readable than the original is:
 

@@ -16,9 +16,10 @@ You will be graded on the level of detail in each ticket, the clarity of the exe
 
 ## Your Breakdown Here
 
-### Migration script
+### **Migration script**
 
 **Context**
+
 In order to allow each facility to set a custom ID for each of their agents, and knowing that agents can work for multiple facilities. We have to introduce a new association table to allow for the new many-to-many relationship between the `Facilities` and `Agents` tables.
 
 **Requirements**
@@ -31,21 +32,23 @@ In order to allow each facility to set a custom ID for each of their agents, and
   - Select facility id & agent id from the shifts table and group them by facility id and agent id. This is essentially the content of the new `customAgentIds` association table you just have to add the custom agent id column.
   - the custom agent id value must be set to the agent id by default (internal database id & the agent's primary key).
 
-### Agents Entity & GET endpoint
+### **Agents Entity & GET endpoint**
 
 **Context**
+
 In order to allow facilities to set a custom Id for each one of the agents they work with, this new property need to be added to the agents entity and it must be set at request-time depending on the facility that's requesting it.
 
 > This property is optional and only relevant when the agent data is request by a facility.
 
-> **Requirements**
+**Requirements**
 
 - A new `customId` property must be added to the Agent entity.
 - Whenever the agents list is requests from a certain facility (a logged in facility admin), the custom agent id corressponding to that facility must be retrieved from the `customAgentIds` association table and appended to agent object.
 
-### Interface update
+### **Interface update**
 
 **Context**
+
 To support custom agent ids client side, facility admins must be able to view them and modify them from their dashboards.
 
 **Reauirements**
@@ -53,7 +56,13 @@ To support custom agent ids client side, facility admins must be able to view th
 - Display the new agent `customId` property in the agent info component.
 - Allow editing the `customId` property in the agent info update form.
 
-### PDF generation
+### **PDF generation**
 
-- Use the agent id & the facility id to retrieve the `customId` from the `customAgentIds` association table
+**Context**
+
+After adding support for facility unique custom agent IDs, the generated reports for each facility must use this new custom agent id instead of the agent's primary key (database generatd id).
+
+**Reauirements**
+
+- When generating a new report, Use the agent id & the facility id to retrieve the `customId` from the `customAgentIds` association table
 - Display the `customId` instead of the `agentId` in the generated shift reports.

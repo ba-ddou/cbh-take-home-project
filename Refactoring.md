@@ -9,3 +9,11 @@ You've been asked to refactor the function `deterministicPartitionKey` in [`dpk.
 You will be graded on the exhaustiveness and quality of your unit tests, the depth of your refactor, and the level of insight into your thought process provided by the written explanation.
 
 ## Your Explanation Here
+
+The first in refactoring this code is adding an empty input check at the beggining of the function body, this makes the function's empty/null/no input behavior/output clearer and removes 1 level of conditional statement nesting from the pyramid of doom that existed before. The second step was extracting the hashing logic into a separate `hash` function making it DRY, and making its purpouse easy to understand. I also wrote a `amendPartitionKey` partition key that sanities the input before hashing to accomodate cases where the `partitionKey` is defined in the input.
+
+The TLDR as to why my version of this code is more readable than the original is:
+
+1. Separation of concers and encapsulation (The sub-pieces of logic involed in this function are neatly organized in separate single-purpouse functions).
+2. The code is DRY (no code duplication).
+3. I removed the pyramind of doom in favor of 3 conditional statements with no nesting.

@@ -18,11 +18,18 @@ You will be graded on the level of detail in each ticket, the clarity of the exe
 
 ### Migration script
 
+**Context**
+In order to allow each facility to set a custom ID for each of their agents, and knowing that agents can work for multiple facilities. We have to introduce a new association table to allow for the new many-to-many relationship between the `Facilities` and `Agents` tables.
+
+**Requirements**
+
 - Create a new `customAgentIds` association table with 3 columns (facility id, agent id & custom agent id).
 
-- Write a migration script to read data from the shifts table use to seed data into the the new `customAgentIds` association table
+  > this new association table has a composite primary key (facility id & agent id).
 
-- the custom agent id value must be set to the agent id by default (internal database id & the agent's primary key).
+- Write a migration script to seed data into the new table:
+  - Select facility id & agent id from the shifts table and group them by facility id and agent id. This is essentially the content of the new `customAgentIds` association table you just have to add the custom agent id column.
+  - the custom agent id value must be set to the agent id by default (internal database id & the agent's primary key).
 
 ### Agents Entity & GET endpoint
 
